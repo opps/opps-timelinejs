@@ -4,23 +4,26 @@ from timelinejs.models import Timeline, TimelineEvent, TimelineOptions
 
 class CommonMedia:
     js = (
-      #'https://ajax.googleapis.com/ajax/libs/dojo/1.6.0/dojo/dojo.xd.js',
-      #'admin/js/editor.js',
-      'admin/js/inlinecollapsed.js',
+        #'https://ajax.googleapis.com/ajax/libs/dojo/1.6.0/dojo/dojo.xd.js',
+        #'admin/js/editor.js',
+        'admin/js/inlinecollapsed.js',
     )
     css = {
-      'all': ('admin/css/editor.css',),
+        'all': ('admin/css/editor.css',),
     }
-  
+
+
 class OptionsInline(StackedInline):
     model = TimelineOptions
-    
+
+
 class EventsInline(StackedInline):
     model = TimelineEvent
-    
+
+
 class TimelineAdmin(ModelAdmin):
     fieldsets = (
-        (None, {'fields': (('headline', 'start_date'), 'text')}), 
+        (None, {'fields': (('headline', 'start_date'), 'text')}),
         ('Assets', {
             'classes': ('collapse',),
             'fields': ('asset_media', 'asset_credit', 'asset_caption')
