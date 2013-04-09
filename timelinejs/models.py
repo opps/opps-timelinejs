@@ -1,5 +1,8 @@
 # coding: utf-8
+
+from jsonfield import JSONField
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 
 class Timeline(models.Model):
@@ -36,6 +39,25 @@ class Timeline(models.Model):
         blank=True,
         verbose_name='caption',
         help_text='Caption for media'
+    )
+
+    json = JSONField(
+        _(u"Timeline Json"),
+        blank=True,
+        null=True,
+        help_text=_(
+            u'Optional JSON for timelinejs if not provided'
+            u' you should add items or google spreadsheet'
+        )
+    )
+    source = models.URLField(
+        _(u"Source URL"),
+        blank=True,
+        null=True,
+        help_text=_(
+            u'Optional Google Spreadsheet or json URL for timelinejs '
+            u' if not provided you should add items or json'
+        )
     )
 
     def to_dict(self):
@@ -79,7 +101,7 @@ class TimelineEvent(models.Model):
         max_length=200,
         blank=True,
         verbose_name='media',
-        help_text='Media to add to even info: Picutre link, YouTube, Wikipedia, etc.'
+        help_text='Media to add to even info: Picture link, YouTube, Wikipedia, etc.'
     )
     asset_credit = models.CharField(
         max_length=200,
@@ -92,6 +114,48 @@ class TimelineEvent(models.Model):
         blank=True,
         verbose_name='caption',
         help_text='Caption for media'
+    )
+    asset_thumbnail = models.CharField(
+        _(u"Media thumbnail"),
+        max_length=500,
+        blank=True,
+        null=True,
+        help_text=_(u'Optional 32x32 thumbnail')
+    )
+
+    type = models.CharField(
+        _(u"Item type"),
+        max_length=255,
+        blank=True,
+        null=True,
+        default='date',
+        help_text=_(
+            u'Use "date",  "era", "title" or "chart"'
+            u' Note: Only one can be "title"'
+            u' and "era" displays only headline and dates'
+        )
+    )
+
+    classname = models.CharField(
+        _(u"Classname"),
+        max_length=255,
+        null=True,
+        blank=True
+    )
+
+    value = models.CharField(
+        _(u"Chart Value"),
+        max_length=140,
+        null=True,
+        blank=True,
+        help_text=_(u'This is only used for "chart" type')
+    )
+
+    tag = models.CharField(
+        _(u"Tag"),
+        max_length=140,
+        null=True,
+        blank=True
     )
 
     def to_dict(self):
