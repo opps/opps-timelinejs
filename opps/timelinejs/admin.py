@@ -1,5 +1,5 @@
-from django.contrib.admin import site, ModelAdmin, StackedInline
-from .models import Timeline, TimelineEvent, TimelineOptions
+from django.contrib.admin import site, ModelAdmin, StackedInline, TabularInline
+from .models import Timeline, TimelineEvent, TimelineOptions, TimelinePost
 
 
 class CommonMedia:
@@ -21,6 +21,14 @@ class EventsInline(StackedInline):
     model = TimelineEvent
 
 
+class TimelinePostInline(TabularInline):
+    model = TimelinePost
+    fk_name = 'timeline'
+    raw_id_fields = ['post']
+    actions = None
+    extra = 1
+
+
 class TimelineAdmin(ModelAdmin):
     fieldsets = (
         (None, {'fields': (('headline', 'start_date'), 'text')}),
@@ -33,7 +41,7 @@ class TimelineAdmin(ModelAdmin):
             'fields': ('source', 'json')
         })
     )
-    inlines = [OptionsInline, EventsInline]
+    inlines = [TimelinePostInline, OptionsInline, EventsInline]
     Media = CommonMedia
 
 

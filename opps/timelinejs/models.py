@@ -59,6 +59,19 @@ class Timeline(models.Model):
             u' if not provided you should add items or json'
         )
     )
+    channel = models.ForeignKey(
+        'channels.Channel',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL
+    )
+    posts = models.ManyToManyField(
+        'articles.Post',
+        null=True,
+        blank=True,
+        related_name='timeline_post',
+        through='TimelinePost'
+    )
 
     def to_dict(self):
         d = {}
@@ -78,6 +91,28 @@ class Timeline(models.Model):
 
     def __str__(self):
         return "%s - %s" % (self.start_date, self.headline)
+
+
+class TimelinePost(models.Model):
+    post = models.ForeignKey(
+        'articles.Post',
+        verbose_name=_(u'Timeline Post'),
+        null=True,
+        blank=True,
+        related_name='timelinepost_post',
+        on_delete=models.SET_NULL
+    )
+    timeline = models.ForeignKey(
+        'timelinejs.Timeline',
+        verbose_name=_(u'Timeline'),
+        null=True,
+        blank=True,
+        related_name='timelinepost_timeline',
+        on_delete=models.SET_NULL
+    )
+
+    def __unicode__(self):
+        return u"{0}-{1}".format(self.timeline.slug, self.post.slug)
 
 
 class TimelineEvent(models.Model):
