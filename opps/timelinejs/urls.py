@@ -1,5 +1,5 @@
-from django.conf.urls.defaults import patterns, url
-from timelinejs.views import TimelineView
+from django.conf.urls import patterns, url
+from .views import TimelineView
 
 urlpatterns = patterns(
     '',
