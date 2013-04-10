@@ -1,0 +1,12 @@
+include opps/timelinejs/templates/*
+include opps/timelinejs/templatetags/*
+include opps/timelinejs/static/*
+include opps/timelinejs/static/admin/*
+include opps/timelinejs/static/admin/css/*
+include opps/timelinejs/static/admin/js/*
+include opps/timelinejs/static/css/*
+include opps/timelinejs/static/css/themes/*
+include opps/timelinejs/static/css/themes/font/*
+include opps/timelinejs/static/js/*
+include opps/timelinejs/static/js/locale/*
+
