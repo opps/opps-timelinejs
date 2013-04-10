@@ -1,6 +1,6 @@
 from django import template
 from django.core.urlresolvers import reverse
-
+from ..models import Timeline
 register = template.Library()
 
 
@@ -10,11 +10,15 @@ def timeline(context, src=None, **config):
         instance = context['timeline']
         src = instance.source or instance.json or instance.pk
     if isinstance(src, (int, long)):
-        config['src'] = '%s?format=json' % reverse('timelinejs:timelineview', kwargs={'pk': int(src)})
+        url = '%s?format=json' % reverse('timelinejs:timelineview', kwargs={'pk': int(src)})
+        instance = Timeline.objects.get(pk=int(src))
+        config['src'] = instance.source or instance.json or url
     else:
         try:
             # `src` might be a string that can be coerced into a long
-            config['src'] = '%s?format=json' % reverse('timelinejs:timelineview', kwargs={'pk': long(src)})
+            url = '%s?format=json' % reverse('timelinejs:timelineview', kwargs={'pk': long(src)})
+            instance = Timeline.objects.get(pk=int(src))
+            config['src'] = instance.source or instance.json or url
         except ValueError:
             config['src'] = src
     # if context.has_key('options'):
