@@ -85,7 +85,14 @@ class Timeline(models.Model):
         events = []
         for e in self.timelineevent_set.all():
             events.append(dict([(attr, getattr(e, attr)) for attr in [f.name for f in e._meta.fields]]))
-        d['date'] = [e.to_dict() for e in self.timelineevent_set.all()]
+        if self.timelineevent_set.filter(type='date').exists():
+            d['date'] = [e.to_dict() for e in self.timelineevent_set.filter(type='date')]
+        if self.timelineevent_set.filter(type='era').exists():
+            d['era'] = [e.to_dict() for e in self.timelineevent_set.filter(type='era')]
+        if self.timelineevent_set.filter(type='title').exists():
+            d['title'] = [e.to_dict() for e in self.timelineevent_set.filter(type='title')]
+        if self.timelineevent_set.filter(type='chart').exists():
+            d['chart'] = [e.to_dict() for e in self.timelineevent_set.filter(type='chart')]
         timeline = {'timeline': d}
         return timeline
 
@@ -198,9 +205,16 @@ class TimelineEvent(models.Model):
         d['startDate'] = self.start_date.strftime('%Y,%m,%d')
         d['endDate'] = self.end_date.strftime('%Y,%m,%d') if self.end_date else d['startDate']
         d['headline'] = self.headline
+        d['tag'] = self.tag
+
+        if self.type == 'chart':
+            d['value'] = self.value
+
+        d['classname'] = self.classname
         d['text'] = self.text
         d['asset'] = {'media': self.asset_media,
                       'credit': self.asset_credit,
+                      'thumbnail': self.asset_thumbnail,
                       'caption': self.asset_caption}
         return d
 
