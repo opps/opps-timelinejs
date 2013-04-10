@@ -42,7 +42,7 @@ class TimelineAdmin(ModelAdmin):
         })
     )
     inlines = [TimelinePostInline, OptionsInline, EventsInline]
-    Media = CommonMedia
+    # Media = CommonMedia
 
 
 class TimelineEventAdmin(ModelAdmin):
