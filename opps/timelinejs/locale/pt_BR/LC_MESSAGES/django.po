@@ -1,0 +1,81 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-04-18 12:01-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: models.py:45
+msgid "Timeline Json"
+msgstr ""
+
+#: models.py:49
+msgid ""
+"Optional JSON for timelinejs if not provided you should add items or google "
+"spreadsheet"
+msgstr ""
+
+#: models.py:54
+msgid "Source URL"
+msgstr ""
+
+#: models.py:58
+msgid ""
+"Optional Google Spreadsheet or json URL for timelinejs  if not provided you "
+"should add items or json"
+msgstr ""
+
+#: models.py:106
+msgid "Timeline Post"
+msgstr ""
+
+#: models.py:114
+msgid "Timeline"
+msgstr ""
+
+#: models.py:161
+msgid "Media thumbnail"
+msgstr ""
+
+#: models.py:165
+msgid "Optional 32x32 thumbnail"
+msgstr ""
+
+#: models.py:169
+msgid "Item type"
+msgstr ""
+
+#: models.py:175
+msgid ""
+"Use \"date\",  \"era\", \"title\" or \"chart\" Note: Only one can be \"title"
+"\" and \"era\" displays only headline and dates"
+msgstr ""
+
+#: models.py:182
+msgid "Classname"
+msgstr ""
+
+#: models.py:189
+msgid "Chart Value"
+msgstr ""
+
+#: models.py:193
+msgid "This is only used for \"chart\" type"
+msgstr ""
+
+#: models.py:197
+msgid "Tag"
+msgstr ""
