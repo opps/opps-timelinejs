@@ -1,81 +1,82 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# 
+# Translators:
+# Ellison Leão <ellisonleao@gmail.com>, 2013
+# Bruno Rocha <rochacbruno@gmail.com>, 2013
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: opps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-18 12:01-0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2013-04-23 18:50+0000\n"
+"Last-Translator: Bruno Rocha <rochacbruno@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) <opps-developers@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: models.py:45
 msgid "Timeline Json"
-msgstr ""
+msgstr "Linha do tempo em JSON"
 
 #: models.py:49
 msgid ""
 "Optional JSON for timelinejs if not provided you should add items or google "
 "spreadsheet"
-msgstr ""
+msgstr "JSON opcional para timelinejs. Caso não seja fornecido, você deverá adicionar itens ou uma planilha google"
 
 #: models.py:54
 msgid "Source URL"
-msgstr ""
+msgstr "URL da fonte"
 
 #: models.py:58
 msgid ""
 "Optional Google Spreadsheet or json URL for timelinejs  if not provided you "
 "should add items or json"
-msgstr ""
+msgstr "Planilha Google opcional ou URL JSON para timelinejs. Caso não seja fornecida, você deverá adicionar itens ou um JSON"
 
 #: models.py:106
 msgid "Timeline Post"
-msgstr ""
+msgstr "Publicação de linha do tempo"
 
 #: models.py:114
 msgid "Timeline"
-msgstr ""
+msgstr "Linha do tempo"
 
 #: models.py:161
 msgid "Media thumbnail"
-msgstr ""
+msgstr "Imagem minimizada de mídia"
 
 #: models.py:165
 msgid "Optional 32x32 thumbnail"
-msgstr ""
+msgstr "Imagem minimizada 32x32 opcional"
 
 #: models.py:169
 msgid "Item type"
-msgstr ""
+msgstr "Tipo de item"
 
 #: models.py:175
 msgid ""
-"Use \"date\",  \"era\", \"title\" or \"chart\" Note: Only one can be \"title"
-"\" and \"era\" displays only headline and dates"
-msgstr ""
+"Use \"date\",  \"era\", \"title\" or \"chart\" Note: Only one can be "
+"\"title\" and \"era\" displays only headline and dates"
+msgstr "Utilize \"date\", \"era\", \"title\" ou \"chart\". Obs: Apenas um item poderá ser adicionado com o tipo \"title\" e o tipo \"era\" exibe apenas o cabeçalho e a data"
 
 #: models.py:182
 msgid "Classname"
-msgstr ""
+msgstr "Nome da classe"
 
 #: models.py:189
 msgid "Chart Value"
-msgstr ""
+msgstr "Valor do Gráfico"
 
 #: models.py:193
 msgid "This is only used for \"chart\" type"
-msgstr ""
+msgstr "Isso é apenas utilizado para tipo \"chart\""
 
 #: models.py:197
 msgid "Tag"
-msgstr ""
+msgstr "Tag"
