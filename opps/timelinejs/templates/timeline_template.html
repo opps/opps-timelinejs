@@ -4,8 +4,10 @@
     <script>
 		$(document).ready(function() {
                     var timeline_config = {
+                        {% if not context.request.GET.full %}
                         width:              '{{ config.width|default:"100%" }}',
                         height:             '{{ config.height|default:"100%" }}',
+                        {% endif %}
                         source:             '{{ src }}',
                         embed_id:           '{{ config.embed_id|default:"timeline-embed" }}',
                         start_at_end:       {{ config.start_at_end|lower|default:'false' }},
