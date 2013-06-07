@@ -150,11 +150,11 @@ msgstr "Tag"
 
 #: models.py:235
 msgid "Timeline Event"
-msgstr "Linha do tempo em JSON"
+msgstr "Evento de Linha do tempo em JSON"
 
 #: models.py:236
 msgid "Timeline Events"
-msgstr "Linha do tempo em JSON"
+msgstr "Eventos de Linha do tempo em JSON"
 
 #: models.py:299
 msgid "Width of timeline DIV"
