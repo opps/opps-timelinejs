@@ -8,7 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 class Timeline(models.Model):
     headline = models.CharField(
         max_length=200,
-        help_text='Headline for timeline'
+        help_text=_(u'Headline for timeline')
     )
     type = models.CharField(
         max_length=50,
@@ -16,29 +16,29 @@ class Timeline(models.Model):
     )
     start_date = models.DateField(
         blank=True,
-        help_text='Timeline start date'
+        help_text=_(u'Timeline start date')
     )
     text = models.TextField(
         blank=True,
-        help_text='Description of timeline'
+        help_text=_(u'Description of timeline')
     )
     asset_media = models.CharField(
         max_length=200,
         blank=True,
-        verbose_name='media',
-        help_text='Media to add to even info: Picutre link, YouTube, Wikipedia, etc.'
+        verbose_name=_('media'),
+        help_text=_(u'Media to add to even info: Picutre link, YouTube, Wikipedia, etc.')
     )
     asset_credit = models.CharField(
         max_length=200,
         blank=True,
-        verbose_name='credit',
-        help_text='Media credits here'
+        verbose_name=_('credit'),
+        help_text=_(u'Media credits here')
     )
     asset_caption = models.CharField(
         max_length=200,
         blank=True,
-        verbose_name='caption',
-        help_text='Caption for media'
+        verbose_name=_('caption'),
+        help_text=_(u'Caption for media')
     )
 
     json = JSONField(
@@ -99,6 +99,10 @@ class Timeline(models.Model):
     def __str__(self):
         return "%s - %s" % (self.start_date, self.headline)
 
+    class Meta:
+        verbose_name = _(u'Timeline')
+        verbose_name_plural = _(u'Timelines')
+
 
 class TimelinePost(models.Model):
     post = models.ForeignKey(
@@ -122,40 +126,46 @@ class TimelinePost(models.Model):
         return u"{0}-{1}".format(self.timeline.slug, self.post.slug)
 
 
+    class Meta:
+        verbose_name = _(u'Timeline Post')
+        verbose_name_plural = _(u'Timeline Posts')
+
+
 class TimelineEvent(models.Model):
     timeline = models.ForeignKey(Timeline)
     start_date = models.DateField(help_text='Event start date')
     end_date = models.DateField(
         blank=True,
         null=True,
-        help_text='Event end date'
+        help_text=_(u'Event end date')
     )
     headline = models.CharField(
         max_length=200,
         blank=True,
-        help_text='Headline for event'
+        help_text=_(u'Headline for event')
     )
     text = models.TextField(
         blank=True,
-        help_text='Text description of event'
+        help_text=_(u'Text description of event')
     )
     asset_media = models.CharField(
         max_length=200,
         blank=True,
-        verbose_name='media',
-        help_text='Media to add to even info: Picture link, YouTube, Wikipedia, etc.'
+        verbose_name=_('media'),
+        help_text=_(u'Media to add to even info: Picture link, YouTube, '
+                    u'Wikipedia, etc.')
     )
     asset_credit = models.CharField(
         max_length=200,
         blank=True,
-        verbose_name='credit',
-        help_text='Media credits here'
+        verbose_name=_('credit'),
+        help_text=_(u'Media credits here')
     )
     asset_caption = models.CharField(
         max_length=200,
         blank=True,
-        verbose_name='caption',
-        help_text='Caption for media'
+        verbose_name=_(u'caption'),
+        help_text=_(u'Caption for media')
     )
     asset_thumbnail = models.CharField(
         _(u"Media thumbnail"),
@@ -221,6 +231,10 @@ class TimelineEvent(models.Model):
     def __str__(self):
         return "%s - %s %s" % (self.start_date, self.end_date, self.headline)
 
+    class Meta:
+        verbose_name = _(u'Timeline Event')
+        verbose_name_plural = _(u'Timeline Events')
+
 
 class TimelineOptions(models.Model):
     FONT_CHOICES = (
@@ -282,59 +296,66 @@ class TimelineOptions(models.Model):
     width = models.CharField(
         max_length=10,
         default='100%',
-        help_text='Width of timeline DIV'
+        help_text=_(u'Width of timeline DIV')
     )
     height = models.CharField(
         max_length=10,
         default='600',
-        help_text='Height of timeline DIV'
+        help_text=_(u'Height of timeline DIV')
     )
     embed_id = models.CharField(
         max_length=20,
         blank=True,
-        help_text='ID of timeline DIV'
+        help_text=_(u'ID of timeline DIV')
     )
     start_at_end = models.BooleanField(
         default=False,
-        help_text='Set to true to start the timeline on the last date. default is false'
+        help_text=_(u'Set to true to start the timeline on the last date.'
+                    u' default is false')
     )
     start_at_slide = models.IntegerField(
         default=0,
-        help_text='You can tell TimelineJS to start at a specific slide number default is 0'
+        help_text=_(u'You can tell TimelineJS to start at a specific slide'
+                    u' number default is 0')
     )
     start_zoom_adjust = models.IntegerField(
         default=0,
-        help_text='This will tweak the default zoom level. Equivalent to pressing the zoom in or zoom out button the specified number of times. Negative numbers zoom out. default is 0'
+        help_text=_(u'This will tweak the default zoom level. Equivalent'
+                    u' to pressing the zoom in or zoom out button the '
+                    u'specified number of times. Negative numbers zoom out. '
+                    u'default is 0')
     )
     hash_bookmark = models.BooleanField(
         default=False,
-        help_text='set to true to allow bookmarking slides using the hash tag default is false'
+        help_text=_(u'set to true to allow bookmarking slides using the hash '
+                    u'tag default is false')
     )
     font = models.CharField(
         max_length=50,
         choices=FONT_CHOICES,
         default='Bevan-PotanoSans',
-        help_text='Font combination options'
+        help_text=_(u'Font combination options')
     )
     debug = models.BooleanField(
         default=False,
-        help_text='Will log events etc to the console. default is false'
+        help_text=_(u'Will log events etc to the console. default is false')
     )
     lang = models.CharField(
         max_length=6,
         choices=LANG_CHOICES,
         default='en',
-        help_text='Localization options. default is English'
+        help_text=_(u'Localization options. default is English')
     )
     maptype = models.CharField(
         max_length=50,
         choices=MAP_CHOICES,
         default='watercolor',
-        help_text='google maps api needed [todo]'
+        help_text=_(u'google maps api needed [todo]')
     )
 
     class Meta:
-        verbose_name_plural = 'Timeline Options'
+        verbose_name = _(u'Timeline Option')
+        verbose_name_plural = _(u'Timeline Options')
 
 #'''JSON Format
 #{
