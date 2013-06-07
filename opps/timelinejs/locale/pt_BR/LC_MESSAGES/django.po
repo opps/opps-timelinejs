@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Ellison Leão <ellisonleao@gmail.com>, 2013
 # Bruno Rocha <rochacbruno@gmail.com>, 2013
@@ -9,15 +9,52 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-18 12:01-0300\n"
+"POT-Creation-Date: 2013-06-07 18:14-0300\n"
 "PO-Revision-Date: 2013-04-23 18:50+0000\n"
 "Last-Translator: Bruno Rocha <rochacbruno@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <opps-developers@googlegroups.com>\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: models.py:11
+msgid "Headline for timeline"
+msgstr ""
+
+#: models.py:19
+#, fuzzy
+msgid "Timeline start date"
+msgstr "Publicação de linha do tempo"
+
+#: models.py:23
+msgid "Description of timeline"
+msgstr ""
+
+#: models.py:28 models.py:145
+msgid "media"
+msgstr ""
+
+#: models.py:29
+msgid "Media to add to even info: Picutre link, YouTube, Wikipedia, etc."
+msgstr ""
+
+#: models.py:34 models.py:152
+msgid "credit"
+msgstr ""
+
+#: models.py:35 models.py:153
+msgid "Media credits here"
+msgstr ""
+
+#: models.py:40 models.py:158
+msgid "caption"
+msgstr ""
+
+#: models.py:41 models.py:159
+msgid "Caption for media"
+msgstr ""
 
 #: models.py:45
 msgid "Timeline Json"
@@ -27,7 +64,9 @@ msgstr "Linha do tempo em JSON"
 msgid ""
 "Optional JSON for timelinejs if not provided you should add items or google "
 "spreadsheet"
-msgstr "JSON opcional para timelinejs. Caso não seja fornecido, você deverá adicionar itens ou uma planilha google"
+msgstr ""
+"JSON opcional para timelinejs. Caso não seja fornecido, você deverá "
+"adicionar itens ou uma planilha google"
 
 #: models.py:54
 msgid "Source URL"
@@ -37,7 +76,9 @@ msgstr "URL da fonte"
 msgid ""
 "Optional Google Spreadsheet or json URL for timelinejs  if not provided you "
 "should add items or json"
-msgstr "Planilha Google opcional ou URL JSON para timelinejs. Caso não seja fornecida, você deverá adicionar itens ou um JSON"
+msgstr ""
+"Planilha Google opcional ou URL JSON para timelinejs. Caso não seja "
+"fornecida, você deverá adicionar itens ou um JSON"
 
 #: models.py:106
 msgid "Timeline Post"
@@ -47,36 +88,109 @@ msgstr "Publicação de linha do tempo"
 msgid "Timeline"
 msgstr "Linha do tempo"
 
-#: models.py:161
+#: models.py:131
+msgid "Event end date"
+msgstr ""
+
+#: models.py:136
+msgid "Headline for event"
+msgstr ""
+
+#: models.py:140
+msgid "Text description of event"
+msgstr ""
+
+#: models.py:146
+msgid "Media to add to even info: Picture link, YouTube, Wikipedia, etc."
+msgstr ""
+
+#: models.py:162
 msgid "Media thumbnail"
 msgstr "Imagem minimizada de mídia"
 
-#: models.py:165
+#: models.py:166
 msgid "Optional 32x32 thumbnail"
 msgstr "Imagem minimizada 32x32 opcional"
 
-#: models.py:169
+#: models.py:170
 msgid "Item type"
 msgstr "Tipo de item"
 
-#: models.py:175
+#: models.py:176
 msgid ""
-"Use \"date\",  \"era\", \"title\" or \"chart\" Note: Only one can be "
-"\"title\" and \"era\" displays only headline and dates"
-msgstr "Utilize \"date\", \"era\", \"title\" ou \"chart\". Obs: Apenas um item poderá ser adicionado com o tipo \"title\" e o tipo \"era\" exibe apenas o cabeçalho e a data"
+"Use \"date\",  \"era\", \"title\" or \"chart\" Note: Only one can be \"title"
+"\" and \"era\" displays only headline and dates"
+msgstr ""
+"Utilize \"date\", \"era\", \"title\" ou \"chart\". Obs: Apenas um item "
+"poderá ser adicionado com o tipo \"title\" e o tipo \"era\" exibe apenas o "
+"cabeçalho e a data"
 
-#: models.py:182
+#: models.py:183
 msgid "Classname"
 msgstr "Nome da classe"
 
-#: models.py:189
+#: models.py:190
 msgid "Chart Value"
 msgstr "Valor do Gráfico"
 
-#: models.py:193
+#: models.py:194
 msgid "This is only used for \"chart\" type"
 msgstr "Isso é apenas utilizado para tipo \"chart\""
 
-#: models.py:197
+#: models.py:198
 msgid "Tag"
 msgstr "Tag"
+
+#: models.py:286
+msgid "Width of timeline DIV"
+msgstr ""
+
+#: models.py:291
+msgid "Height of timeline DIV"
+msgstr ""
+
+#: models.py:296
+msgid "ID of timeline DIV"
+msgstr ""
+
+#: models.py:300
+msgid "Set to true to start the timeline on the last date. default is false"
+msgstr ""
+
+#: models.py:305
+msgid ""
+"You can tell TimelineJS to start at a specific slide number default is 0"
+msgstr ""
+
+#: models.py:310
+msgid ""
+"This will tweak the default zoom level. Equivalent to pressing the zoom in "
+"or zoom out button the specified number of times. Negative numbers zoom out. "
+"default is 0"
+msgstr ""
+
+#: models.py:317
+msgid ""
+"set to true to allow bookmarking slides using the hash tag default is false"
+msgstr ""
+
+#: models.py:324
+msgid "Font combination options"
+msgstr ""
+
+#: models.py:328
+msgid "Will log events etc to the console. default is false"
+msgstr ""
+
+#: models.py:334
+msgid "Localization options. default is English"
+msgstr ""
+
+#: models.py:340
+msgid "google maps api needed [todo]"
+msgstr ""
+
+#: models.py:344
+#, fuzzy
+msgid "Timeline Options"
+msgstr "Linha do tempo em JSON"
