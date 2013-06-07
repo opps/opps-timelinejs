@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-07 18:14-0300\n"
+"POT-Creation-Date: 2013-06-07 18:30-0300\n"
 "PO-Revision-Date: 2013-04-23 18:50+0000\n"
 "Last-Translator: Bruno Rocha <rochacbruno@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <opps-developers@googlegroups.com>\n"
@@ -24,7 +24,6 @@ msgid "Headline for timeline"
 msgstr ""
 
 #: models.py:19
-#, fuzzy
 msgid "Timeline start date"
 msgstr "Publicação de linha do tempo"
 
@@ -32,7 +31,7 @@ msgstr "Publicação de linha do tempo"
 msgid "Description of timeline"
 msgstr ""
 
-#: models.py:28 models.py:145
+#: models.py:28 models.py:154
 msgid "media"
 msgstr ""
 
@@ -40,19 +39,19 @@ msgstr ""
 msgid "Media to add to even info: Picutre link, YouTube, Wikipedia, etc."
 msgstr ""
 
-#: models.py:34 models.py:152
+#: models.py:34 models.py:161
 msgid "credit"
 msgstr ""
 
-#: models.py:35 models.py:153
+#: models.py:35 models.py:162
 msgid "Media credits here"
 msgstr ""
 
-#: models.py:40 models.py:158
+#: models.py:40 models.py:167
 msgid "caption"
 msgstr ""
 
-#: models.py:41 models.py:159
+#: models.py:41 models.py:168
 msgid "Caption for media"
 msgstr ""
 
@@ -80,43 +79,51 @@ msgstr ""
 "Planilha Google opcional ou URL JSON para timelinejs. Caso não seja "
 "fornecida, você deverá adicionar itens ou um JSON"
 
-#: models.py:106
-msgid "Timeline Post"
-msgstr "Publicação de linha do tempo"
-
-#: models.py:114
+#: models.py:103 models.py:118
 msgid "Timeline"
 msgstr "Linha do tempo"
 
+#: models.py:104
+msgid "Timelines"
+msgstr "Linha do tempo"
+
+#: models.py:110 models.py:130
+msgid "Timeline Post"
+msgstr "Publicação de linha do tempo"
+
 #: models.py:131
+msgid "Timeline Posts"
+msgstr "Publicação de linha do tempo"
+
+#: models.py:140
 msgid "Event end date"
 msgstr ""
 
-#: models.py:136
+#: models.py:145
 msgid "Headline for event"
 msgstr ""
 
-#: models.py:140
+#: models.py:149
 msgid "Text description of event"
 msgstr ""
 
-#: models.py:146
+#: models.py:155
 msgid "Media to add to even info: Picture link, YouTube, Wikipedia, etc."
 msgstr ""
 
-#: models.py:162
+#: models.py:171
 msgid "Media thumbnail"
 msgstr "Imagem minimizada de mídia"
 
-#: models.py:166
+#: models.py:175
 msgid "Optional 32x32 thumbnail"
 msgstr "Imagem minimizada 32x32 opcional"
 
-#: models.py:170
+#: models.py:179
 msgid "Item type"
 msgstr "Tipo de item"
 
-#: models.py:176
+#: models.py:185
 msgid ""
 "Use \"date\",  \"era\", \"title\" or \"chart\" Note: Only one can be \"title"
 "\" and \"era\" displays only headline and dates"
@@ -125,72 +132,83 @@ msgstr ""
 "poderá ser adicionado com o tipo \"title\" e o tipo \"era\" exibe apenas o "
 "cabeçalho e a data"
 
-#: models.py:183
+#: models.py:192
 msgid "Classname"
 msgstr "Nome da classe"
 
-#: models.py:190
+#: models.py:199
 msgid "Chart Value"
 msgstr "Valor do Gráfico"
 
-#: models.py:194
+#: models.py:203
 msgid "This is only used for \"chart\" type"
 msgstr "Isso é apenas utilizado para tipo \"chart\""
 
-#: models.py:198
+#: models.py:207
 msgid "Tag"
 msgstr "Tag"
 
-#: models.py:286
+#: models.py:235
+msgid "Timeline Event"
+msgstr "Linha do tempo em JSON"
+
+#: models.py:236
+msgid "Timeline Events"
+msgstr "Linha do tempo em JSON"
+
+#: models.py:299
 msgid "Width of timeline DIV"
 msgstr ""
 
-#: models.py:291
+#: models.py:304
 msgid "Height of timeline DIV"
 msgstr ""
 
-#: models.py:296
+#: models.py:309
 msgid "ID of timeline DIV"
 msgstr ""
 
-#: models.py:300
+#: models.py:313
 msgid "Set to true to start the timeline on the last date. default is false"
 msgstr ""
 
-#: models.py:305
+#: models.py:318
 msgid ""
 "You can tell TimelineJS to start at a specific slide number default is 0"
 msgstr ""
 
-#: models.py:310
+#: models.py:323
 msgid ""
 "This will tweak the default zoom level. Equivalent to pressing the zoom in "
 "or zoom out button the specified number of times. Negative numbers zoom out. "
 "default is 0"
 msgstr ""
 
-#: models.py:317
+#: models.py:330
 msgid ""
 "set to true to allow bookmarking slides using the hash tag default is false"
 msgstr ""
 
-#: models.py:324
+#: models.py:337
 msgid "Font combination options"
 msgstr ""
 
-#: models.py:328
+#: models.py:341
 msgid "Will log events etc to the console. default is false"
 msgstr ""
 
-#: models.py:334
+#: models.py:347
 msgid "Localization options. default is English"
 msgstr ""
 
-#: models.py:340
+#: models.py:353
 msgid "google maps api needed [todo]"
 msgstr ""
 
-#: models.py:344
-#, fuzzy
-msgid "Timeline Options"
+#: models.py:357
+msgid "Timeline Option"
 msgstr "Linha do tempo em JSON"
+
+#: models.py:358
+msgid "Timeline Options"
+msgstr "Linhas do tempo em JSON"

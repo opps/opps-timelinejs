@@ -99,6 +99,10 @@ class Timeline(models.Model):
     def __str__(self):
         return "%s - %s" % (self.start_date, self.headline)
 
+    class Meta:
+        verbose_name = _(u'Timeline')
+        verbose_name_plural = _(u'Timelines')
+
 
 class TimelinePost(models.Model):
     post = models.ForeignKey(
@@ -120,6 +124,11 @@ class TimelinePost(models.Model):
 
     def __unicode__(self):
         return u"{0}-{1}".format(self.timeline.slug, self.post.slug)
+
+
+    class Meta:
+        verbose_name = _(u'Timeline Post')
+        verbose_name_plural = _(u'Timeline Posts')
 
 
 class TimelineEvent(models.Model):
@@ -221,6 +230,10 @@ class TimelineEvent(models.Model):
 
     def __str__(self):
         return "%s - %s %s" % (self.start_date, self.end_date, self.headline)
+
+    class Meta:
+        verbose_name = _(u'Timeline Event')
+        verbose_name_plural = _(u'Timeline Events')
 
 
 class TimelineOptions(models.Model):
@@ -341,6 +354,7 @@ class TimelineOptions(models.Model):
     )
 
     class Meta:
+        verbose_name = _(u'Timeline Option')
         verbose_name_plural = _(u'Timeline Options')
 
 #'''JSON Format
