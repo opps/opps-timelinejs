@@ -8,19 +8,23 @@ from django.utils.translation import ugettext_lazy as _
 class Timeline(models.Model):
     headline = models.CharField(
         max_length=200,
-        help_text=_(u'Headline for timeline')
+        help_text=_(u'Headline for timeline'),
+        verbose_name=_(u'Headline'),
     )
     type = models.CharField(
         max_length=50,
-        default="default"
+        default="default",
+        verbose_name=_(u'type'),
     )
     start_date = models.DateField(
         blank=True,
-        help_text=_(u'Timeline start date')
+        verbose_name=_(u'Start Date'),
+        help_text=_(u'Timeline start date'),
     )
     text = models.TextField(
         blank=True,
-        help_text=_(u'Description of timeline')
+        verbose_name=_(u'Text'),
+        help_text=_(u'Description of timeline'),
     )
     asset_media = models.CharField(
         max_length=200,
@@ -133,20 +137,24 @@ class TimelinePost(models.Model):
 
 class TimelineEvent(models.Model):
     timeline = models.ForeignKey(Timeline)
-    start_date = models.DateField(help_text='Event start date')
+    start_date = models.DateField(verbose_name=_(u'Start Date'),
+                                  help_text=_('Event start date'))
     end_date = models.DateField(
         blank=True,
         null=True,
-        help_text=_(u'Event end date')
+        help_text=_(u'Event end date'),
+        verbose_name=_(u'End Date'),
     )
     headline = models.CharField(
         max_length=200,
         blank=True,
-        help_text=_(u'Headline for event')
+        help_text=_(u'Headline for event'),
+        verbose_name=_(u'Headline'),
     )
     text = models.TextField(
         blank=True,
-        help_text=_(u'Text description of event')
+        help_text=_(u'Text description of event'),
+        verbose_name=_(u'Text'),
     )
     asset_media = models.CharField(
         max_length=200,
@@ -296,30 +304,36 @@ class TimelineOptions(models.Model):
     width = models.CharField(
         max_length=10,
         default='100%',
-        help_text=_(u'Width of timeline DIV')
+        help_text=_(u'Width of timeline DIV'),
+        verbose_name=_(u'Width'),
     )
     height = models.CharField(
         max_length=10,
         default='600',
-        help_text=_(u'Height of timeline DIV')
+        help_text=_(u'Height of timeline DIV'),
+        verbose_name=_(u'Height')
     )
     embed_id = models.CharField(
         max_length=20,
         blank=True,
-        help_text=_(u'ID of timeline DIV')
+        help_text=_(u'ID of timeline DIV'),
+        verbose_name=_(u'Embed ID')
     )
     start_at_end = models.BooleanField(
         default=False,
+        verbose_name=_(u'Start at end'),
         help_text=_(u'Set to true to start the timeline on the last date.'
                     u' default is false')
     )
     start_at_slide = models.IntegerField(
         default=0,
+        verbose_name=_(u'Start at slide'),
         help_text=_(u'You can tell TimelineJS to start at a specific slide'
                     u' number default is 0')
     )
     start_zoom_adjust = models.IntegerField(
         default=0,
+        verbose_name=_(u'Start zoom adjust'),
         help_text=_(u'This will tweak the default zoom level. Equivalent'
                     u' to pressing the zoom in or zoom out button the '
                     u'specified number of times. Negative numbers zoom out. '
@@ -327,6 +341,7 @@ class TimelineOptions(models.Model):
     )
     hash_bookmark = models.BooleanField(
         default=False,
+        verbose_name=_(u'Hash bookmark'),
         help_text=_(u'set to true to allow bookmarking slides using the hash '
                     u'tag default is false')
     )
@@ -334,22 +349,26 @@ class TimelineOptions(models.Model):
         max_length=50,
         choices=FONT_CHOICES,
         default='Bevan-PotanoSans',
+        verbose_name=_(u'Font'),
         help_text=_(u'Font combination options')
     )
     debug = models.BooleanField(
         default=False,
+        verbose_name=_(u'Debug'),
         help_text=_(u'Will log events etc to the console. default is false')
     )
     lang = models.CharField(
         max_length=6,
         choices=LANG_CHOICES,
         default='en',
+        verbose_name=_(u'Language'),
         help_text=_(u'Localization options. default is English')
     )
     maptype = models.CharField(
         max_length=50,
         choices=MAP_CHOICES,
         default='watercolor',
+        verbose_name=_(u'Map Type'),
         help_text=_(u'google maps api needed [todo]')
     )
 
