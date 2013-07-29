@@ -24,13 +24,13 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal(u'timelinejs', ['Timeline'])
 
-        # Adding model 'TimelinePost'
-        db.create_table(u'timelinejs_timelinepost', (
+        # Adding model 'TimelineContainer'
+        db.create_table(u'timelinejs_timelinecontainer', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('post', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name='timelinepost_post', null=True, on_delete=models.SET_NULL, to=orm['articles.Post'])),
-            ('timeline', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name='timelinepost_timeline', null=True, on_delete=models.SET_NULL, to=orm['timelinejs.Timeline'])),
+            ('container', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name='timelinecontainer_container', null=True, on_delete=models.SET_NULL, to=orm['containers.Container'])),
+            ('timeline', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name='timelinecontainer_timeline', null=True, on_delete=models.SET_NULL, to=orm['timelinejs.Timeline'])),
         ))
-        db.send_create_signal(u'timelinejs', ['TimelinePost'])
+        db.send_create_signal(u'timelinejs', ['TimelineContainer'])
 
         # Adding model 'TimelineEvent'
         db.create_table(u'timelinejs_timelineevent', (
@@ -73,8 +73,8 @@ class Migration(SchemaMigration):
         # Deleting model 'Timeline'
         db.delete_table(u'timelinejs_timeline')
 
-        # Deleting model 'TimelinePost'
-        db.delete_table(u'timelinejs_timelinepost')
+        # Deleting model 'TimelineContainer'
+        db.delete_table(u'timelinejs_timelinecontainer')
 
         # Deleting model 'TimelineEvent'
         db.delete_table(u'timelinejs_timelineevent')
@@ -84,28 +84,6 @@ class Migration(SchemaMigration):
 
 
     models = {
-        u'articles.album': {
-            'Meta': {'object_name': 'Album'},
-            u'container_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['containers.Container']", 'unique': 'True', 'primary_key': 'True'}),
-            'headline': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
-            'short_title': ('django.db.models.fields.CharField', [], {'max_length': '140', 'null': 'True', 'blank': 'True'})
-        },
-        u'articles.post': {
-            'Meta': {'object_name': 'Post'},
-            'albums': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'post_albums'", 'null': 'True', 'symmetrical': 'False', 'to': u"orm['articles.Album']"}),
-            u'container_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['containers.Container']", 'unique': 'True', 'primary_key': 'True'}),
-            'content': ('django.db.models.fields.TextField', [], {}),
-            'headline': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
-            'related_posts': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'post_relatedposts'", 'to': u"orm['containers.Container']", 'through': u"orm['articles.PostRelated']", 'blank': 'True', 'symmetrical': 'False', 'null': 'True'}),
-            'short_title': ('django.db.models.fields.CharField', [], {'max_length': '140', 'null': 'True', 'blank': 'True'})
-        },
-        u'articles.postrelated': {
-            'Meta': {'ordering': "('order',)", 'object_name': 'PostRelated'},
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'order': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'}),
-            'post': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'postrelated_post'", 'null': 'True', 'on_delete': 'models.SET_NULL', 'to': u"orm['articles.Post']"}),
-            'related': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'postrelated_related'", 'null': 'True', 'on_delete': 'models.SET_NULL', 'to': u"orm['containers.Container']"})
-        },
         u'auth.group': {
             'Meta': {'object_name': 'Group'},
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
@@ -185,7 +163,7 @@ class Migration(SchemaMigration):
             'site_iid': ('django.db.models.fields.PositiveIntegerField', [], {'db_index': 'True', 'max_length': '4', 'null': 'True', 'blank': 'True'}),
             'slug': ('django.db.models.fields.SlugField', [], {'max_length': '150'}),
             'sources': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': u"orm['sources.Source']", 'null': 'True', 'through': u"orm['containers.ContainerSource']", 'blank': 'True'}),
-            'tags': ('django.db.models.fields.CharField', [], {'max_length': '4000', 'blank': 'True'}),
+            'tags': ('django.db.models.fields.CharField', [], {'db_index': 'True', 'max_length': '4000', 'null': 'True', 'blank': 'True'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '140', 'db_index': 'True'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"})
         },
@@ -235,7 +213,7 @@ class Migration(SchemaMigration):
             'slug': ('django.db.models.fields.SlugField', [], {'max_length': '150'}),
             'smart': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'source': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['sources.Source']", 'null': 'True', 'blank': 'True'}),
-            'tags': ('django.db.models.fields.CharField', [], {'max_length': '4000', 'blank': 'True'}),
+            'tags': ('django.db.models.fields.CharField', [], {'db_index': 'True', 'max_length': '4000', 'null': 'True', 'blank': 'True'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '140', 'db_index': 'True'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"}),
             'valign': ('django.db.models.fields.CharField', [], {'default': 'False', 'max_length': '6', 'null': 'True', 'blank': 'True'})
@@ -268,14 +246,20 @@ class Migration(SchemaMigration):
             'asset_credit': ('django.db.models.fields.CharField', [], {'max_length': '200', 'blank': 'True'}),
             'asset_media': ('django.db.models.fields.CharField', [], {'max_length': '200', 'blank': 'True'}),
             'channel': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['channels.Channel']", 'null': 'True', 'on_delete': 'models.SET_NULL', 'blank': 'True'}),
+            'containers': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'timeline_container'", 'to': u"orm['containers.Container']", 'through': u"orm['timelinejs.TimelineContainer']", 'blank': 'True', 'symmetrical': 'False', 'null': 'True'}),
             'headline': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'json': ('jsonfield.fields.JSONField', [], {'null': 'True', 'blank': 'True'}),
-            'posts': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'timeline_post'", 'to': u"orm['articles.Post']", 'through': u"orm['timelinejs.TimelinePost']", 'blank': 'True', 'symmetrical': 'False', 'null': 'True'}),
             'source': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
             'start_date': ('django.db.models.fields.DateField', [], {'blank': 'True'}),
             'text': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
             'type': ('django.db.models.fields.CharField', [], {'default': "'default'", 'max_length': '50'})
+        },
+        u'timelinejs.timelinecontainer': {
+            'Meta': {'object_name': 'TimelineContainer'},
+            'container': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'timelinecontainer_container'", 'null': 'True', 'on_delete': 'models.SET_NULL', 'to': u"orm['containers.Container']"}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'timeline': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'timelinecontainer_timeline'", 'null': 'True', 'on_delete': 'models.SET_NULL', 'to': u"orm['timelinejs.Timeline']"})
         },
         u'timelinejs.timelineevent': {
             'Meta': {'object_name': 'TimelineEvent'},
@@ -308,12 +292,6 @@ class Migration(SchemaMigration):
             'start_zoom_adjust': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
             'timeline': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['timelinejs.Timeline']", 'unique': 'True', 'primary_key': 'True'}),
             'width': ('django.db.models.fields.CharField', [], {'default': "'100%'", 'max_length': '10'})
-        },
-        u'timelinejs.timelinepost': {
-            'Meta': {'object_name': 'TimelinePost'},
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'post': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'timelinepost_post'", 'null': 'True', 'on_delete': 'models.SET_NULL', 'to': u"orm['articles.Post']"}),
-            'timeline': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'timelinepost_timeline'", 'null': 'True', 'on_delete': 'models.SET_NULL', 'to': u"orm['timelinejs.Timeline']"})
         }
     }
 
