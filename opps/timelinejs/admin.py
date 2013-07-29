@@ -1,5 +1,6 @@
 from django.contrib.admin import site, ModelAdmin, StackedInline, TabularInline
-from .models import Timeline, TimelineEvent, TimelineOptions, TimelinePost
+from .models import (Timeline, TimelineEvent, TimelineOptions,
+                     TimelineContainer)
 from opps.core.admin import apply_opps_rules
 
 
@@ -22,10 +23,10 @@ class EventsInline(StackedInline):
     model = TimelineEvent
 
 
-class TimelinePostInline(TabularInline):
-    model = TimelinePost
+class TimelineContainerInline(TabularInline):
+    model = TimelineContainer
     fk_name = 'timeline'
-    raw_id_fields = ['post']
+    raw_id_fields = ['container']
     actions = None
     extra = 1
 
@@ -43,7 +44,7 @@ class TimelineAdmin(ModelAdmin):
             'fields': ('source', 'json')
         })
     )
-    inlines = [TimelinePostInline, OptionsInline, EventsInline]
+    inlines = [TimelineContainerInline, OptionsInline, EventsInline]
     # Media = CommonMedia
 
 
