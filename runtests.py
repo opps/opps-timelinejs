@@ -40,7 +40,6 @@ if not settings.configured:
             'opps.flatpages',
 
             'opps.timelinejs',
-            'taggit',
 
         ),
         SITE_ID = 1,
