@@ -40,7 +40,7 @@ class TimelineAdmin(ModelAdmin):
         }),
         ('Source', {
             'classes': ('collapse',),
-            'fields': ('source', 'json')
+            'fields': ('source',)
         })
     )
     inlines = [TimelinePostInline, OptionsInline, EventsInline]
