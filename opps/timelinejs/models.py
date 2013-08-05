@@ -3,6 +3,11 @@
 from jsonfield import JSONField
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.core.urlresolvers import reverse
+from django.conf import settings
+
+
+app_namespace = getattr(settings, 'OPPS_TIMEINEJS_URL_NAMESPACE', 'timelinejs')
 
 
 class Timeline(models.Model):
@@ -16,10 +21,20 @@ class Timeline(models.Model):
         default="default",
         verbose_name=_(u'type'),
     )
-    start_date = models.DateField(
-        blank=True,
-        verbose_name=_(u'Start Date'),
-        help_text=_(u'Timeline start date'),
+    # start_date = models.DateField(
+    #     blank=True,
+    #     verbose_name=_(u'Start Date'),
+    #     help_text=_(u'Timeline start date'),
+    # )
+    start_date = models.CharField(
+        _(u'Start Date'),
+        help_text=_(u"""
+            Event end date:<br />
+            If you enter 2000 in the date column, it will read as 2000.<br>
+            01/2000 will read as January, 2000 and <br>
+            12/31/2000 will read as December 31st, 2000.
+        """),
+        max_length=10 # 01/01/2000
     )
     text = models.TextField(
         blank=True,
@@ -79,7 +94,7 @@ class Timeline(models.Model):
 
     def to_dict(self):
         d = {}
-        d['startDate'] = self.start_date.strftime('%Y,%m,%d')
+        d['startDate'] = self.start_date
         d['type'] = self.type
         d['headline'] = self.headline
         d['text'] = self.text
@@ -106,6 +121,19 @@ class Timeline(models.Model):
     class Meta:
         verbose_name = _(u'Timeline')
         verbose_name_plural = _(u'Timelines')
+
+    def get_absolute_url(self):
+        return reverse(
+            '{0}:timelineview'.format(app_namespace),
+            kwargs={'pk': self.pk}
+        )
+
+    def get_thumb(self):
+        return self.asset_media
+
+    @property
+    def search_category(self):
+        return _("Timeline")
 
 
 class TimelinePost(models.Model):
@@ -137,13 +165,30 @@ class TimelinePost(models.Model):
 
 class TimelineEvent(models.Model):
     timeline = models.ForeignKey(Timeline)
-    start_date = models.DateField(verbose_name=_(u'Start Date'),
-                                  help_text=_('Event start date'))
-    end_date = models.DateField(
+    # start_date = models.DateField(verbose_name=_(u'Start Date'),
+    #                               help_text=_('Event start date'))
+    # end_date = models.DateField(
+    #     blank=True,
+    #     null=True,
+    #     help_text=_(u'Event end date'),
+    #     verbose_name=_(u'End Date'),
+    # )
+    start_date = models.CharField(
+        _(u'Start Date'),
+        help_text=_(u"""
+            Event end date:<br />
+            If you enter 2000 in the date column, it will read as 2000.<br>
+            01/2000 will read as January, 2000 and <br>
+            12/31/2000 will read as December 31st, 2000.
+        """),
+        max_length=10 # 01/01/2000
+    )
+    end_date = models.CharField(
+        _(u'End Date'),
+        help_text=_(u'Event end date'),
         blank=True,
         null=True,
-        help_text=_(u'Event end date'),
-        verbose_name=_(u'End Date'),
+        max_length=10 # 01/01/2000
     )
     headline = models.CharField(
         max_length=200,
@@ -220,8 +265,8 @@ class TimelineEvent(models.Model):
 
     def to_dict(self):
         d = {}
-        d['startDate'] = self.start_date.strftime('%Y,%m,%d')
-        d['endDate'] = self.end_date.strftime('%Y,%m,%d') if self.end_date else d['startDate']
+        d['startDate'] = self.start_date
+        d['endDate'] = self.end_date or d['startDate']
         d['headline'] = self.headline
         d['tag'] = self.tag
 

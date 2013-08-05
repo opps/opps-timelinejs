@@ -1,25 +1,34 @@
 from django.contrib.admin import site, ModelAdmin, StackedInline, TabularInline
+from django.utils.translation import ugettext_lazy as _
 from .models import Timeline, TimelineEvent, TimelineOptions, TimelinePost
 from opps.core.admin import apply_opps_rules
 
 
 class CommonMedia:
-    js = (
-        #'https://ajax.googleapis.com/ajax/libs/dojo/1.6.0/dojo/dojo.xd.js',
-        #'admin/js/editor.js',
-        'admin/js/inlinecollapsed.js',
-    )
-    css = {
-        'all': ('admin/css/editor.css',),
-    }
+    pass
+    # js = (
+    #     #'https://ajax.googleapis.com/ajax/libs/dojo/1.6.0/dojo/dojo.xd.js',
+    #     #'admin/js/editor.js',
+    #     'admin/js/inlinecollapsed.js',
+    # )
+    # css = {
+    #     'all': ('admin/css/editor.css',),
+    # }
+
 
 
 class OptionsInline(StackedInline):
     model = TimelineOptions
-
+    extra = 1
+    verbose_name = _("Option")
+    verbose_name_plural = _("Options")
 
 class EventsInline(StackedInline):
     model = TimelineEvent
+    extra = 1
+    max_num = None
+    verbose_name = _("Event")
+    verbose_name_plural = _("Events")
 
 
 class TimelinePostInline(TabularInline):
