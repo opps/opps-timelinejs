@@ -45,8 +45,21 @@ class Timeline(models.Model):
         max_length=200,
         blank=True,
         verbose_name=_('media'),
-        help_text=_(u'Media to add to even info: Picutre link, YouTube, Wikipedia, etc.')
+        help_text=_(
+            u'Picture link, YouTube, Wikipedia, etc.'
+        )
     )
+
+    asset_image = models.ForeignKey(
+        'images.Image',
+        verbose_name=_(u'Timeline Image'),
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='timeline_image',
+        help_text="If an image is selected, the asset_media is ignored"
+    )
+
     asset_credit = models.CharField(
         max_length=200,
         blank=True,
@@ -98,9 +111,14 @@ class Timeline(models.Model):
         d['type'] = self.type
         d['headline'] = self.headline
         d['text'] = self.text
-        d['asset'] = {'media': self.asset_media,
-                      'credit': self.asset_credit,
-                      'caption': self.asset_caption}
+        d['asset'] = {'media': (self.asset_image.get_absolute_url()
+                                if self.asset_image else self.asset_media),
+                      'credit': (self.asset_credit or
+                                 self.asset_image.source
+                                 if self.asset_image else None),
+                      'caption': (self.asset_caption or
+                                 self.asset_image.description
+                                 if self.asset_image else None)}
         events = []
         for e in self.timelineevent_set.all():
             events.append(dict([(attr, getattr(e, attr)) for attr in [f.name for f in e._meta.fields]]))
@@ -208,6 +226,17 @@ class TimelineEvent(models.Model):
         help_text=_(u'Media to add to even info: Picture link, YouTube, '
                     u'Wikipedia, etc.')
     )
+
+    asset_image = models.ForeignKey(
+        'images.Image',
+        verbose_name=_(u'Event Image'),
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='timelineevent_image',
+        help_text="If an image is selected, the asset_media is ignored"
+    )
+
     asset_credit = models.CharField(
         max_length=200,
         blank=True,
@@ -275,10 +304,14 @@ class TimelineEvent(models.Model):
 
         d['classname'] = self.classname
         d['text'] = self.text
-        d['asset'] = {'media': self.asset_media,
-                      'credit': self.asset_credit,
-                      'thumbnail': self.asset_thumbnail,
-                      'caption': self.asset_caption}
+        d['asset'] = {'media': (self.asset_image.get_absolute_url()
+                                if self.asset_image else self.asset_media),
+                      'credit': (self.asset_credit or
+                                 self.asset_image.source
+                                 if self.asset_image else None),
+                      'caption': (self.asset_caption or
+                                 self.asset_image.description
+                                 if self.asset_image else None)}
         return d
 
     def __str__(self):
