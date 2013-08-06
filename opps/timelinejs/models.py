@@ -133,8 +133,8 @@ class Timeline(models.Model):
         timeline = {'timeline': d}
         return timeline
 
-    def __str__(self):
-        return "%s - %s" % (self.start_date, self.headline)
+    def __unicode__(self):
+        return u"%s - %s" % (self.start_date, self.headline)
 
     class Meta:
         verbose_name = _(u'Timeline')
@@ -314,8 +314,8 @@ class TimelineEvent(models.Model):
                                  if self.asset_image else None)}
         return d
 
-    def __str__(self):
-        return "%s - %s %s" % (self.start_date, self.end_date, self.headline)
+    def __unicode__(self):
+        return u"%s - %s %s" % (self.start_date, self.end_date, self.headline)
 
     class Meta:
         verbose_name = _(u'Timeline Event')
