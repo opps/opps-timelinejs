@@ -114,7 +114,7 @@ class Timeline(models.Model):
         d['asset'] = {'media': (self.asset_image.get_absolute_url()
                                 if self.asset_image else self.asset_media),
                       'credit': (self.asset_credit or
-                                 self.asset_image.source
+                                 self.asset_image.source.name
                                  if self.asset_image else None),
                       'caption': (self.asset_caption or
                                  self.asset_image.description
@@ -307,7 +307,7 @@ class TimelineEvent(models.Model):
         d['asset'] = {'media': (self.asset_image.get_absolute_url()
                                 if self.asset_image else self.asset_media),
                       'credit': (self.asset_credit or
-                                 self.asset_image.source
+                                 self.asset_image.source.name
                                  if self.asset_image else None),
                       'caption': (self.asset_caption or
                                  self.asset_image.description
