@@ -10,4 +10,4 @@ timeline.sqlite
 *.pot
 *.pyc
 .idea
-
+dist
