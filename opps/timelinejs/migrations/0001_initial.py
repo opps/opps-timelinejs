@@ -101,7 +101,7 @@ class Migration(SchemaMigration):
             'name': ('django.db.models.fields.CharField', [], {'max_length': '50'})
         },
         u'%s.%s' % (User._meta.app_label, User._meta.module_name): {
-            'Meta': {'object_name': User.__user__},
+            'Meta': {'object_name': User.__name__},
         },
         u'channels.channel': {
             'Meta': {'ordering': "['name', 'parent__id', 'published']", 'unique_together': "(('site', 'long_slug', 'slug', 'parent'),)", 'object_name': 'Channel'},
